@@ -23,47 +23,6 @@ template <typename T> using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree
 
 void solve(void)
 {
-    int n;
-    cin >> n;
-    vector<int> v(n+5);
-    map<int,int> cnt ;
-
-    for(int i=1;i<=n;i++)
-    {
-      cin >> v[i]; 
-      cnt[v[i]]++; 
-    } 
-
-    // for(int i=1;i<=n;i++)
-    // {
-    //     cout << cnt[v[i]] << " ";
-    // }
-    // cout << endl;
-    
-    pair<int,int> ans = {1,0};
-    for(int i=1 ; i<=n; ){
-        if(cnt[v[i]]>1)
-        {
-           i++;
-        }else{
-           int j=i;
-
-           while(j<=n && cnt[v[j]]==1)
-           {
-             j++;
-           }
-
-           if(ans.second - ans.first < j - i-1 ) 
-           {
-             ans = {i,j-1};
-           }
-           i=j;
-        }
-    }
-   
-    if(ans.second==0) cout << 0 << endl;
-    else cout << ans.first << " " << ans.second << endl;
-
     
 }
 signed main()
@@ -72,7 +31,7 @@ signed main()
     cin.tie(NULL);
 
     int t=1;
-    cin >> t;
+    //cin >> t;
     while(t--)
     {
        solve();
