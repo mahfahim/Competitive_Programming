@@ -25,33 +25,38 @@ void solve(void)
 {
     int n;
     cin >> n;
-    ll sum = 1LL * n * (n+1) / 2;
-    if(sum & 1){
-        cout << "NO" << endl;
-    }else{
-        
-        sum /= 2;
-        vector<int> s1,s2;
-        for(int i=n;i>=1;i--)
-        {
-            if(sum >= i)
-            {
-                sum -= i;
-                s1.push_back(i);
-            }else{
-                s2.push_back(i);
-            }
-        }
-        cout << "YES" << endl;
-        cout << s1.size() << endl;
-        for(int u:s1) cout << u << " ";
-        cout << endl;
-        cout << s2.size() << endl;
-        for(int u:s2) cout << u << " ";
-        cout << endl;
-        
-    }
+    string s;
+    cin >> s;
+    int cnt = 0;
+    map<int,int> rep;
+    bool flag = true;
+    for(int i=0;i<s.size();i++){
+      if(s[i]=='.'){
+        cnt=cnt+1;
 
+      }else if(s[i]=='#'){
+        // cout << cnt << " ";
+        rep[cnt]++;
+        if(cnt > 2) flag=false;
+        cnt=0;
+      }
+    }
+    // cout << cnt << " ";
+    rep[cnt]++;
+    if(cnt > 2) flag=false;
+    cnt=0;
+    
+    
+    if(flag){
+      if(rep[1]==0 && rep[2]==0){
+        cout << 0 << endl;
+      }else{
+        cout << rep[1] + 2 * rep[2] << endl;
+      }
+      
+    }else{
+      cout << 2 << endl;
+    }
 }
 signed main()
 {
@@ -59,7 +64,7 @@ signed main()
     cin.tie(NULL);
 
     int t=1;
-    //cin >> t;
+    cin >> t;
     while(t--)
     {
        solve();

@@ -23,34 +23,22 @@ template <typename T> using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree
 
 void solve(void)
 {
-    int n;
-    cin >> n;
-    ll sum = 1LL * n * (n+1) / 2;
-    if(sum & 1){
-        cout << "NO" << endl;
-    }else{
-        
-        sum /= 2;
-        vector<int> s1,s2;
-        for(int i=n;i>=1;i--)
-        {
-            if(sum >= i)
-            {
-                sum -= i;
-                s1.push_back(i);
-            }else{
-                s2.push_back(i);
-            }
-        }
-        cout << "YES" << endl;
-        cout << s1.size() << endl;
-        for(int u:s1) cout << u << " ";
-        cout << endl;
-        cout << s2.size() << endl;
-        for(int u:s2) cout << u << " ";
-        cout << endl;
-        
+    int n,x;
+    cin >> n >> x;
+    vector<int> v(n);
+
+    for(int i=0;i<n;i++) cin >> v[i];
+
+    int gap = v[0];
+    for(int i=1;i<n;i++)
+    {
+        gap = max(gap,v[i]-v[i-1]);
+
     }
+    int dif = x - v[n-1];
+    gap = max(gap,2*dif);
+    cout << gap << endl;
+    
 
 }
 signed main()
@@ -59,7 +47,7 @@ signed main()
     cin.tie(NULL);
 
     int t=1;
-    //cin >> t;
+    cin >> t;
     while(t--)
     {
        solve();
