@@ -26,32 +26,33 @@ void solve(void)
     int n;
     cin >> n;
     vector<int> v(n);
-    for(int i=0;i<n;i++) cin >> v[i];
-
-    // for(int i=2;i<n;i++)
-    // {
-    //    if(v[i]<v[i-1]){
-    //     swap(v[i],v[i-1]);
-    //    }
-    // }
-    bool flag = true;
-    // for(int i=1;i<n;i++){
-    //     if(v[i]<v[i-1]) flag = false;
-    // }
-
-    if(v[0] != 1 ) flag=false;
-    sort(v.begin(),v.end());
-    for(int i=0;i<n;i++)
-    {
-       if(v[i] != i+1 ) flag=false;
+    for(int i=0;i<n;i++){
+        cin >> v[i];
+    }
+    bool flag = false;
+    pair<int,int> p;
+    int dif = INT_MAX;
+    int min_dif;
+    for(int i=1;i<n;i++){
+        if(v[i-1]>v[i]){
+            flag = true;
+        }
+        
+        int temp = abs(v[i]-v[i-1]);
+        if(dif > temp){
+            dif = temp;
+            p.first = v[i];
+            p.second = v[i-1];
+            min_dif = abs(p.first-p.second);
+        }
     }
     
-    if(flag) cout << "YES" << endl;
-    else cout << "NO" << endl;
-
-    // for(int i=0;i<n;i++) cout << v[i] << " ";
-
-    // cout << endl;
+    if(flag){
+        cout << 0 << endl;
+    }else{
+        min_dif /= 2;
+        cout << min_dif + 1 << endl;
+    }
 }
 signed main()
 {

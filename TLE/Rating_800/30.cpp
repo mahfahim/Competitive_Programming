@@ -14,49 +14,47 @@ using namespace std;
 #define f(a,b,c) for(int a=b;a<c;a++)
 #define cin(vec,n) f(i,0,n){cin >> vec[i];}
 #define endl "\n"
-const int NN = 2e5+10;
+const int NN = 1000000;
 const int MM = 1e9+7;
 #define ll long long
 #define ldb long double
 template <typename T> using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 //template <typename T> using pbds = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
+vector<int> aa;
 
 void solve(void)
 {
     int n;
     cin >> n;
-    vector<int> v(n);
-    for(int i=0;i<n;i++) cin >> v[i];
-
-    // for(int i=2;i<n;i++)
-    // {
-    //    if(v[i]<v[i-1]){
-    //     swap(v[i],v[i-1]);
-    //    }
-    // }
-    bool flag = true;
-    // for(int i=1;i<n;i++){
-    //     if(v[i]<v[i-1]) flag = false;
-    // }
-
-    if(v[0] != 1 ) flag=false;
-    sort(v.begin(),v.end());
-    for(int i=0;i<n;i++)
+    int ans = 0;
+    for(int i=0;i<aa.size();i++)
     {
-       if(v[i] != i+1 ) flag=false;
+       if(aa[i] <= n)
+       {
+          ans++;
+       }
     }
-    
-    if(flag) cout << "YES" << endl;
-    else cout << "NO" << endl;
-
-    // for(int i=0;i<n;i++) cout << v[i] << " ";
-
-    // cout << endl;
+    cout << ans << endl;
 }
 signed main()
 {
     ios::sync_with_stdio(false);
     cin.tie(NULL);
+
+     for(int i=1;i<=NN;i++)
+    {
+        int cnt = 0;
+        string s = to_string(i);
+        for(int j=0;j<s.size();j++)
+        {
+            if(s[j] != '0')
+            {
+                cnt++;
+            }
+        }
+        if(cnt==1) aa.push_back(i);
+
+    }
 
     int t=1;
     cin >> t;

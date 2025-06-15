@@ -23,35 +23,47 @@ template <typename T> using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree
 
 void solve(void)
 {
-    int n;
-    cin >> n;
-    vector<int> v(n);
-    for(int i=0;i<n;i++) cin >> v[i];
+    ll n,x;
+    cin >> n >> x;
+    vector<ll> v(n);
+    // map<ll,int> mp;
+    for(int i=0;i<n;i++){
+      cin >> v[i];  
+      // mp[v[i]]=i+1;
+    } 
 
-    // for(int i=2;i<n;i++)
-    // {
-    //    if(v[i]<v[i-1]){
-    //     swap(v[i],v[i-1]);
-    //    }
-    // }
-    bool flag = true;
-    // for(int i=1;i<n;i++){
-    //     if(v[i]<v[i-1]) flag = false;
-    // }
-
-    if(v[0] != 1 ) flag=false;
     sort(v.begin(),v.end());
-    for(int i=0;i<n;i++)
-    {
-       if(v[i] != i+1 ) flag=false;
+    int l=0;
+    int r=v.size()-1;
+    ll ans1;
+    ll ans2;
+    bool flag = true;
+    while(l<r){
+
+      ll sum = v[l] + v[r];
+      if(sum == x){
+        ans1 = v[l];
+        ans2 = v[r];
+        flag = false;
+        break;
+      }
+      else if(sum > x ){
+        r--;
+      }
+      else if(sum < x){
+        l++;
+      }
+
     }
     
-    if(flag) cout << "YES" << endl;
-    else cout << "NO" << endl;
+    if(flag){
+      cout << "IMPOSSIBLE" << endl;
+    }else{
+      for(int i=0;)
+      cout << mp[ans1] << " " << mp[ans2] << endl; 
+    }
+    
 
-    // for(int i=0;i<n;i++) cout << v[i] << " ";
-
-    // cout << endl;
 }
 signed main()
 {
@@ -59,7 +71,7 @@ signed main()
     cin.tie(NULL);
 
     int t=1;
-    cin >> t;
+    //cin >> t;
     while(t--)
     {
        solve();

@@ -26,32 +26,51 @@ void solve(void)
     int n;
     cin >> n;
     vector<int> v(n);
-    for(int i=0;i<n;i++) cin >> v[i];
 
-    // for(int i=2;i<n;i++)
-    // {
-    //    if(v[i]<v[i-1]){
-    //     swap(v[i],v[i-1]);
-    //    }
-    // }
-    bool flag = true;
-    // for(int i=1;i<n;i++){
-    //     if(v[i]<v[i-1]) flag = false;
-    // }
+    int minus = 0;
+    int plus = 0;
 
-    if(v[0] != 1 ) flag=false;
-    sort(v.begin(),v.end());
-    for(int i=0;i<n;i++)
-    {
-       if(v[i] != i+1 ) flag=false;
+    for(int i=0;i<n;i++){
+        cin >> v[i];
+        if(v[i] == 1) plus++;
+        if(v[i] == -1) minus++;
     }
-    
-    if(flag) cout << "YES" << endl;
-    else cout << "NO" << endl;
 
-    // for(int i=0;i<n;i++) cout << v[i] << " ";
+    if(minus <= plus ){
 
-    // cout << endl;
+        if(minus % 2 == 0){
+            cout << 0 << endl;
+        }else{
+            cout << 1 << endl;
+        }
+
+    }else{
+        
+        int mid = plus + minus;
+        
+        if(mid % 2 == 0) {
+            mid /= 2;
+            int change = minus - mid;
+            minus -= change;
+            if(minus % 2 != 0){
+                change++;
+            }
+            cout << change << endl;
+        }else{
+            mid /= 2;
+            mid++;
+            int change = mid - plus;
+            minus -= change;
+            if(minus % 2 != 0){
+                change++;
+            }
+            cout << change << endl;
+        }
+       
+    }
+
+
+
 }
 signed main()
 {

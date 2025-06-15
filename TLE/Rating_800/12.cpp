@@ -25,33 +25,27 @@ void solve(void)
 {
     int n;
     cin >> n;
-    vector<int> v(n);
-    for(int i=0;i<n;i++) cin >> v[i];
+    vector<ll> a(n);
+    vector<ll> v;
+    for(int i=0;i<n;i++) cin >> a[i];
 
-    // for(int i=2;i<n;i++)
-    // {
-    //    if(v[i]<v[i-1]){
-    //     swap(v[i],v[i-1]);
-    //    }
-    // }
-    bool flag = true;
-    // for(int i=1;i<n;i++){
-    //     if(v[i]<v[i-1]) flag = false;
-    // }
-
-    if(v[0] != 1 ) flag=false;
-    sort(v.begin(),v.end());
-    for(int i=0;i<n;i++)
+    v.push_back(a[0]);
+    for(int i=1;i<n;i++)
     {
-       if(v[i] != i+1 ) flag=false;
+        
+        if(a[i-1] > a[i] )
+        {
+          v.push_back(a[i]);
+        }
+        v.push_back(a[i]);
     }
+    cout << v.size() << endl;
     
-    if(flag) cout << "YES" << endl;
-    else cout << "NO" << endl;
-
-    // for(int i=0;i<n;i++) cout << v[i] << " ";
-
-    // cout << endl;
+    for(int i=0;i<v.size();i++)
+    {
+        cout << v[i] << " ";
+    }
+    cout << endl;
 }
 signed main()
 {

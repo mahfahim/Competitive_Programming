@@ -26,32 +26,49 @@ void solve(void)
     int n;
     cin >> n;
     vector<int> v(n);
-    for(int i=0;i<n;i++) cin >> v[i];
-
-    // for(int i=2;i<n;i++)
-    // {
-    //    if(v[i]<v[i-1]){
-    //     swap(v[i],v[i-1]);
-    //    }
-    // }
-    bool flag = true;
-    // for(int i=1;i<n;i++){
-    //     if(v[i]<v[i-1]) flag = false;
-    // }
-
-    if(v[0] != 1 ) flag=false;
-    sort(v.begin(),v.end());
+    vector<int> ans1;
+    vector<int> ans2;
+    map<int,int> cnt;
     for(int i=0;i<n;i++)
     {
-       if(v[i] != i+1 ) flag=false;
+        cin >> v[i];
+        cnt[v[i]]++;
     }
     
-    if(flag) cout << "YES" << endl;
-    else cout << "NO" << endl;
+    if(cnt.size() <= 1)
+    {
+        cout << "NO" << endl;
+    }
+    else
+    {
+        cout << "YES" << endl;
+        for(auto &[key,val]:cnt)
+        {
+            ans1.push_back(key);
+            cnt[key]--;
+        }
+        sort(ans1.begin(),ans1.end(),greater<int>());
+        for(auto x:ans1)
+        {
+            cout << x << " ";
+        }
 
-    // for(int i=0;i<n;i++) cout << v[i] << " ";
+        for(auto &[key,val]:cnt)
+        {
+            while(val--){
+                ans2.push_back(key);
+                
+            }
+        }
+        sort(ans2.begin(),ans2.end(),greater<int>());
+        for(auto x:ans2)
+        {
+            cout << x << " ";
+        }
+        cout << endl;
+    }
 
-    // cout << endl;
+
 }
 signed main()
 {

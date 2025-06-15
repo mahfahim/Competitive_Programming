@@ -11,7 +11,7 @@ using namespace std;
 #define nl cout<<"\n"
 #define all(x) x.begin(), x.end()
 #define allr(x) x.rbegin(), x.rend()
-#define f(a,b,c) for(int a=b;a<c;a++)
+#define f(a,b,c) for(ll a=b;a<c;a++)
 #define cin(vec,n) f(i,0,n){cin >> vec[i];}
 #define endl "\n"
 const int NN = 2e5+10;
@@ -23,42 +23,42 @@ template <typename T> using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree
 
 void solve(void)
 {
-    int n;
+    ll n;
     cin >> n;
-    vector<int> v(n);
-    for(int i=0;i<n;i++) cin >> v[i];
+    vector<ll> v(n);
+    map<ll,ll> cnt;
 
-    // for(int i=2;i<n;i++)
-    // {
-    //    if(v[i]<v[i-1]){
-    //     swap(v[i],v[i-1]);
-    //    }
-    // }
-    bool flag = true;
-    // for(int i=1;i<n;i++){
-    //     if(v[i]<v[i-1]) flag = false;
-    // }
+    for(ll i=0;i<n;i++){
+      cin >> v[i];  
+      cnt[v[i]]++;
+   
+    } 
 
-    if(v[0] != 1 ) flag=false;
-    sort(v.begin(),v.end());
-    for(int i=0;i<n;i++)
-    {
-       if(v[i] != i+1 ) flag=false;
+    bool flag = false;
+    ll sz = cnt.size();
+   
+    if(sz == 1) flag = true;
+    else if(sz == 2){
+        
+        int fst = cnt.begin()->second;
+        int lst = cnt.rbegin()->second;
+
+        if(fst == lst) flag = true;
+        if(abs(fst-lst)==1) flag =true;
+                
+        
     }
-    
-    if(flag) cout << "YES" << endl;
-    else cout << "NO" << endl;
 
-    // for(int i=0;i<n;i++) cout << v[i] << " ";
-
-    // cout << endl;
+    if(flag) cout << "Yes" << endl;
+    else cout << "No" << endl;
+     
 }
 signed main()
 {
     ios::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int t=1;
+    ll t=1;
     cin >> t;
     while(t--)
     {

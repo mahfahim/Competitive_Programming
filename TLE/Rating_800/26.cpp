@@ -28,30 +28,29 @@ void solve(void)
     vector<int> v(n);
     for(int i=0;i<n;i++) cin >> v[i];
 
-    // for(int i=2;i<n;i++)
-    // {
-    //    if(v[i]<v[i-1]){
-    //     swap(v[i],v[i-1]);
-    //    }
-    // }
-    bool flag = true;
-    // for(int i=1;i<n;i++){
-    //     if(v[i]<v[i-1]) flag = false;
-    // }
-
-    if(v[0] != 1 ) flag=false;
-    sort(v.begin(),v.end());
-    for(int i=0;i<n;i++)
+    bool flag = false;
+    for(int i=0;i<=n-2;i++)
     {
-       if(v[i] != i+1 ) flag=false;
+      for(int j=i+1;j<=n-1;j++)
+      {
+        
+        int gc = __gcd(v[i],v[j]);
+        if(gc <= 2)
+        {
+            flag = true;
+        }
+      }
+        
     }
-    
-    if(flag) cout << "YES" << endl;
-    else cout << "NO" << endl;
 
-    // for(int i=0;i<n;i++) cout << v[i] << " ";
-
-    // cout << endl;
+    if(flag)
+    {
+        cout << "YES" << endl;
+    }
+    else 
+    {
+        cout << "NO" << endl;
+    }
 }
 signed main()
 {

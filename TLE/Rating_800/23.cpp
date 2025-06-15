@@ -23,35 +23,21 @@ template <typename T> using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree
 
 void solve(void)
 {
-    int n;
-    cin >> n;
-    vector<int> v(n);
-    for(int i=0;i<n;i++) cin >> v[i];
-
-    // for(int i=2;i<n;i++)
-    // {
-    //    if(v[i]<v[i-1]){
-    //     swap(v[i],v[i-1]);
-    //    }
-    // }
-    bool flag = true;
-    // for(int i=1;i<n;i++){
-    //     if(v[i]<v[i-1]) flag = false;
-    // }
-
-    if(v[0] != 1 ) flag=false;
-    sort(v.begin(),v.end());
-    for(int i=0;i<n;i++)
-    {
-       if(v[i] != i+1 ) flag=false;
+    ll a,b,c,d;
+    cin >> a >> b >> c >> d;
+    if(d<b) {
+        cout << -1 << endl;
+    }else{
+        ll y = d - b;
+        ll x = a + y;
+        if(x<c){
+            cout << -1 << endl;
+        }else{
+            ll xx = x - c;
+            ll step = xx + y;
+            cout << step << endl;
+        }
     }
-    
-    if(flag) cout << "YES" << endl;
-    else cout << "NO" << endl;
-
-    // for(int i=0;i<n;i++) cout << v[i] << " ";
-
-    // cout << endl;
 }
 signed main()
 {
