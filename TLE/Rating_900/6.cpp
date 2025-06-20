@@ -20,40 +20,24 @@ const int MM = 1e9+7;
 #define ldb long double
 template <typename T> using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 //template <typename T> using pbds = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
-vector<int> p = {1,-1,1,-1} , q = {1,-1,-1,1};
+
 void solve(void)
 {
-    int a,b,ki,kj,qi,qj;
-
-    cin >> a >> b;
-    cin >> ki >> kj;
-    cin >> qi >> qj;
-
-    set<pair<int,int>> ks,qs;
-    
-    for(int i=0;i<4;i++)
+    ll n;
+    cin >> n;
+    int cnt = 0;
+    for(ll i=1;i*i<=10000;i++)
     {
-        ks.insert({ki+p[i]*a , kj+q[i]*b});
-        ks.insert({ki+p[i]*b , kj+q[i]*a});
-        qs.insert({qi+p[i]*a , qj+q[i]*b});
-        qs.insert({qi+p[i]*b , qj+q[i]*a});
-
-    }
-    
-    int ans = 0;
-    for(auto x:ks)
-    {
-        if(qs.find(x) != qs.end())
+        if(n%i==0)
         {
-            ans++;
+            cnt++;
+        }
+        else
+        {
+            break;
         }
     }
-
-    cout << ans << endl;
-
-
-
-
+    cout << cnt << endl;
 }
 signed main()
 {

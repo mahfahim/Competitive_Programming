@@ -20,40 +20,33 @@ const int MM = 1e9+7;
 #define ldb long double
 template <typename T> using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 //template <typename T> using pbds = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
-vector<int> p = {1,-1,1,-1} , q = {1,-1,-1,1};
+
 void solve(void)
 {
-    int a,b,ki,kj,qi,qj;
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+    char pre = s[0];
+    int start = 0;
+    int end ;
+    int mx = 0;
 
-    cin >> a >> b;
-    cin >> ki >> kj;
-    cin >> qi >> qj;
-
-    set<pair<int,int>> ks,qs;
     
-    for(int i=0;i<4;i++)
+    for(int i=1;i<s.size();i++)
     {
-        ks.insert({ki+p[i]*a , kj+q[i]*b});
-        ks.insert({ki+p[i]*b , kj+q[i]*a});
-        qs.insert({qi+p[i]*a , qj+q[i]*b});
-        qs.insert({qi+p[i]*b , qj+q[i]*a});
-
-    }
-    
-    int ans = 0;
-    for(auto x:ks)
-    {
-        if(qs.find(x) != qs.end())
+        if(s[i] != s[i-1])
         {
-            ans++;
+           end = i-1;
+           int range = end - start + 1;
+           mx = max(mx,range);
+           start = end + 1;
         }
     }
-
-    cout << ans << endl;
-
-
-
-
+    int range = n-1 - start + 1;
+    mx = max(mx,range);
+    cout << mx + 1 << endl;
+    
 }
 signed main()
 {

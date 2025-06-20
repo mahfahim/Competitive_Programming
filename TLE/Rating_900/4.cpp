@@ -20,38 +20,22 @@ const int MM = 1e9+7;
 #define ldb long double
 template <typename T> using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 //template <typename T> using pbds = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
-vector<int> p = {1,-1,1,-1} , q = {1,-1,-1,1};
+
 void solve(void)
 {
-    int a,b,ki,kj,qi,qj;
-
-    cin >> a >> b;
-    cin >> ki >> kj;
-    cin >> qi >> qj;
-
-    set<pair<int,int>> ks,qs;
-    
-    for(int i=0;i<4;i++)
+    int n;
+    ll a,b;
+    cin >> a >> b >> n;
+    vector<ll> x(n);
+    for(int i=0;i<n;i++) cin >> x[i];
+    ll sum = 0;
+    sum += b-1;
+    for(int i=0;i<n;i++)
     {
-        ks.insert({ki+p[i]*a , kj+q[i]*b});
-        ks.insert({ki+p[i]*b , kj+q[i]*a});
-        qs.insert({qi+p[i]*a , qj+q[i]*b});
-        qs.insert({qi+p[i]*b , qj+q[i]*a});
-
+       sum += (min(1+x[i] , a) - 1);
     }
-    
-    int ans = 0;
-    for(auto x:ks)
-    {
-        if(qs.find(x) != qs.end())
-        {
-            ans++;
-        }
-    }
-
-    cout << ans << endl;
-
-
+    sum++;
+    cout << sum << endl;
 
 
 }
